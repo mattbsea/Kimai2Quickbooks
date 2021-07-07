@@ -29,11 +29,17 @@ class SystemConfigurationSubscriber implements EventSubscriberInterface
     {
         $event->addConfiguration(
             (new SystemConfigurationModel())
-            ->setSection('k2qb_config')
+            ->setSection('kimai_quickbooks_config')
             ->setConfiguration([
                 (new Configuration())
-                    ->setName('k2qb.client_key')
-                    ->setLabel('k2qb.client_key')
+                    ->setName('kimai_quickbooks.setting_client_id')
+                    ->setLabel('kimai_quickbooks.setting_client_id')
+                    ->setTranslationDomain('system-configuration')
+                    ->setRequired(false)
+                    ->setType(TextType::class),
+                (new Configuration())
+                    ->setName('kimai_quickbooks.setting_client_secret')
+                    ->setLabel('kimai_quickbooks.setting_client_secret')
                     ->setTranslationDomain('system-configuration')
                     ->setRequired(false)
                     ->setType(TextType::class),

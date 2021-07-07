@@ -14,6 +14,10 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+require_once(__DIR__ . '/../vendor/autoload.php');
+use QuickBooksOnline\API\DataService\DataService;
+
+
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -21,15 +25,27 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('k2qb');
+        $treeBuilder = new TreeBuilder('kimaiquickbooks');
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
+
+        $dataService = DataService::Configure(array(
+            'auth_mode' => 'oauth2',
+            'ClientID' => 'client_id',
+            'ClientSecret' =>  'client_secret',
+            'RedirectURI' => 'oauth_redirect_uri',
+            'scope' => 'oauth_scope',
+            'baseUrl' => "development"
+        ));
 
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('client_key')
-                    ->defaultValue('not set')
+                ->scalarNode('setting_client_id')
+                    ->defaultValue('Client ID')
+                ->end()
+                ->scalarNode('setting_client_secret')
+                    ->defaultValue('Client Secret')
                 ->end()
             ->end()
         ->end();

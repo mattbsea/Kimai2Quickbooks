@@ -2,13 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="de" datatype="plaintext" original="system-configuration.de.xliff">
         <body>
-            <trans-unit id="k2qb_config">
-                <source>k2qb_config</source>
+            <trans-unit id="kimai_quickbooks_config">
+                <source>kimai_quickbooks_config</source>
                 <target>Quickbooks Configurations</target>
             </trans-unit>
-            <trans-unit id="label.k2qb.client_key">
-                <source>label.k2qb.client_key</source>
-                <target>Quickbooks Online Client API Key</target>
+            <trans-unit id="label.kimai_quickbooks.setting_client_id">
+                <source>label.kimai_quickbooks.setting_client_id</source>
+                <target>Quickbooks Online Client ID</target>
+            </trans-unit>
+            <trans-unit id="label.kimai_quickbooks.setting_client_secret">
+                <source>label.kimai_quickbooks.setting_client_secret</source>
+                <target>Quickbooks Online Client Secret</target>
             </trans-unit>
         </body>
     </file>

@@ -7,4 +7,8 @@ services:
 
   KimaiPlugin\KimaiQuickbooksBundle\:
     resource: "../../*"
-    exclude: "../../{Resources}"
+    exclude: "../../{Resources,vendor}"
+
+  KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration:
+    arguments:
+      $settings: "%kimai_quickbooks_settings%"

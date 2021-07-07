@@ -17,7 +17,8 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Yaml\Parser;
 
-class KimaiQuickbooksExtension extends AbstractPluginExtension
+
+class KimaiQuickbooksExtension extends AbstractPluginExtension implements PrependExtensionInterface
 {
     /**
      * @param array $configs
@@ -30,11 +31,26 @@ class KimaiQuickbooksExtension extends AbstractPluginExtension
         $config = $this->processConfiguration($configuration, $configs);
         $this->registerBundleConfiguration($container, $config);
 
+        $container->setParameter('kimai_quickbooks_settings', $config);
+
         $loader = new Loader\YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
         $loader->load('services.yaml');
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig('kimai', [
+            'permissions' => [
+                'roles' => [
+                    'ROLE_SUPER_ADMIN' => [
+                        'kimai_quickbooks',
+                    ],
+                ],
+            ],
+        ]);
     }
 }

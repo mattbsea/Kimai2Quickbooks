@@ -10,22 +10,25 @@
 
 namespace KimaiPlugin\KimaiQuickbooksBundle\Configuration;
 
-use App\Configuration\SystemConfiguration;
+use App\Configuration\StringAccessibleConfigTrait;
+use App\Configuration\SystemBundleConfiguration;
 
-final class KimaiQuickbooksConfiguration
+final class KimaiQuickbooksConfiguration implements SystemBundleConfiguration, \ArrayAccess
 {
-    /**
-     * @var SystemConfiguration
-     */
-    private $configuration;
+    use StringAccessibleConfigTrait;
 
-    public function __construct(SystemConfiguration $configuration)
+    public function getPrefix(): string
     {
-        $this->configuration = $configuration;
+        return 'kimai_quickbooks';
     }
 
-    public function getQBClientKey(): string
+    public function getQBClientId(): string
     {
-        return (string) $this->configuration->find('k2qb.client_key');
+        return (string) $this->find('setting_client_id');
+    }
+
+    public function getQBClientSecret(): string
+    {
+        return (string) $this->find('setting_client_secret');
     }
 }
