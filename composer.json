@@ -1,0 +1,30 @@
+{
+  "name": "mbarclay/kimai-quickbooks",
+  "description": "Kimai integration with Quickbooks Online",
+  "homepage": "https://www.kimai.org/",
+  "type": "kimai-plugin",
+  "version": "0.1",
+  "require": {
+    "quickbooks/v3-php-sdk": "v4.0.6.1"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kevin Papst",
+      "email": "kpapst@gmx.net",
+      "homepage": "https://www.kimai.org"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "KimaiPlugin\\KimaiQuickbooksBundle\\": ""
+    }
+  },
+  "extra": {
+    "kimai": {
+      "require": "1.11",
+      "version": "0.1",
+      "name": "KimaiQuickbooksBundle"
+    }
+  }
+}
