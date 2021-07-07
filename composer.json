@@ -3,7 +3,7 @@
   "description": "Kimai integration with Quickbooks Online",
   "homepage": "https://www.kimai.org/",
   "type": "kimai-plugin",
-  "version": "0.2",
+  "version": "0.3",
   "require": {
     "quickbooks/v3-php-sdk": "v4.0.6.1"
   },
@@ -22,7 +22,7 @@
   "extra": {
     "kimai": {
       "require": "1.11",
-      "version": "0.2",
+      "version": "0.3",
       "name": "KimaiQuickbooks"
     }
   },

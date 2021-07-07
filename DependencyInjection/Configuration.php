@@ -14,10 +14,6 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-require_once(__DIR__ . '/../vendor/autoload.php');
-use QuickBooksOnline\API\DataService\DataService;
-
-
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -29,15 +25,6 @@ class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
-        $dataService = DataService::Configure(array(
-            'auth_mode' => 'oauth2',
-            'ClientID' => 'client_id',
-            'ClientSecret' =>  'client_secret',
-            'RedirectURI' => 'oauth_redirect_uri',
-            'scope' => 'oauth_scope',
-            'baseUrl' => "development"
-        ));
-
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
@@ -46,6 +33,18 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('setting_client_secret')
                     ->defaultValue('Client Secret')
+                ->end()
+                ->scalarNode('setting_oauth_redirect_uri')
+                    ->defaultValue('OAuth Redirect URI')
+                ->end()
+                ->scalarNode('setting_openid_redirect_uri')
+                    ->defaultValue('OpenID Redirect URI')
+                ->end()
+                ->scalarNode('setting_authorization_request_url')
+                    ->defaultValue('https://appcenter.intuit.com/connect/oauth2')
+                ->end()
+                ->scalarNode('setting_token_endpoint_url')
+                    ->defaultValue('https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer')
                 ->end()
             ->end()
         ->end();

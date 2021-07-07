@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="kimai_quickbooks_config">
                 <source>kimai_quickbooks_config</source>
-                <target>Quickbooks Configurations</target>
+                <target>Quickbooks Configuration</target>
             </trans-unit>
             <trans-unit id="label.kimai_quickbooks.setting_client_id">
                 <source>label.kimai_quickbooks.setting_client_id</source>
@@ -13,6 +13,22 @@
             <trans-unit id="label.kimai_quickbooks.setting_client_secret">
                 <source>label.kimai_quickbooks.setting_client_secret</source>
                 <target>Quickbooks Online Client Secret</target>
+            </trans-unit>
+            <trans-unit id="label.kimai_quickbooks.setting_oauth_redirect_uri">
+                <source>label.kimai_quickbooks.setting_oauth_redirect_uri</source>
+                <target>Quickbooks Online OAuth Redirect URI</target>
+            </trans-unit>
+            <trans-unit id="label.kimai_quickbooks.setting_openid_redirect_uri">
+                <source>label.kimai_quickbooks.setting_openid_redirect_uri</source>
+                <target>Quickbooks Online OpenID Redirect URI</target>
+            </trans-unit>
+            <trans-unit id="label.kimai_quickbooks.setting_authorization_request_url">
+                <source>label.kimai_quickbooks.setting_authorization_request_url</source>
+                <target>Quickbooks Online Authorization Request URL</target>
+            </trans-unit>
+            <trans-unit id="label.kimai_quickbooks.setting_token_endpoint_url">
+                <source>label.kimai_quickbooks.setting_token_endpoint_url</source>
+                <target>Quickbooks Online Token Endpoint URL</target>
             </trans-unit>
         </body>
     </file>

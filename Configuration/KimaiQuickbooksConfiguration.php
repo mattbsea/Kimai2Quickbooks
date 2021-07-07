@@ -22,13 +22,34 @@ final class KimaiQuickbooksConfiguration implements SystemBundleConfiguration, \
         return 'kimai_quickbooks';
     }
 
-    public function getQBClientId(): string
+    public function getClientId(): string
     {
         return (string) $this->find('setting_client_id');
     }
 
-    public function getQBClientSecret(): string
+    public function getClientSecret(): string
     {
         return (string) $this->find('setting_client_secret');
     }
+
+    public function getOAuthRedirectUri(): string
+    {
+        return (string) $this->find('setting_oauth_redirect_uri');
+    }
+
+    public function getOpenIDRedirectUri(): string
+    {
+        return (string) $this->find('setting_openid_redirect_uri');
+    }
+
+    public function getAuthorizationRequestUrl(): string
+    {
+        return (string) $this->find('setting_authorization_request_url');
+    }
+
+    public function getTokenEndpointUrl(): string
+    {
+        return (string) $this->find('setting_token_endpoint_url');
+    }
+
 }

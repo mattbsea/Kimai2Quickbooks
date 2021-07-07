@@ -43,6 +43,30 @@ class SystemConfigurationSubscriber implements EventSubscriberInterface
                     ->setTranslationDomain('system-configuration')
                     ->setRequired(false)
                     ->setType(TextType::class),
+                (new Configuration())
+                    ->setName('kimai_quickbooks.setting_oauth_redirect_uri')
+                    ->setLabel('kimai_quickbooks.setting_oauth_redirect_uri')
+                    ->setTranslationDomain('system-configuration')
+                    ->setRequired(false)
+                    ->setType(TextType::class),
+                (new Configuration())
+                    ->setName('kimai_quickbooks.setting_openid_redirect_uri')
+                    ->setLabel('kimai_quickbooks.setting_openid_redirect_uri')
+                    ->setTranslationDomain('system-configuration')
+                    ->setRequired(false)
+                    ->setType(TextType::class),
+                (new Configuration())
+                    ->setName('kimai_quickbooks.setting_authorization_request_url')
+                    ->setLabel('kimai_quickbooks.setting_authorization_request_url')
+                    ->setTranslationDomain('system-configuration')
+                    ->setRequired(false)
+                    ->setType(TextType::class),
+                (new Configuration())
+                    ->setName('kimai_quickbooks.setting_token_endpoint_url')
+                    ->setLabel('kimai_quickbooks.setting_token_endpoint_url')
+                    ->setTranslationDomain('system-configuration')
+                    ->setRequired(false)
+                    ->setType(TextType::class),
             ])
         );
     }
