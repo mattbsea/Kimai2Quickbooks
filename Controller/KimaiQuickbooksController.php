@@ -18,20 +18,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="/admin/kimai-quickbooks")
+ * @Route(path="/admin/quickbooks")
  * @Security("is_granted('kimai_quickbooks')")
  */
-final class EasyBackupController extends AbstractController
+final class KimaiQuickbooksController extends AbstractController
 {
     public const LOG_FILE_NAME = 'easybackup.log';
     public const LOG_ERROR_PREFIX = 'ERROR';
     public const LOG_WARN_PREFIX = 'WARNING';
     public const LOG_INFO_PREFIX = 'INFO';
-
-    /**
-     * @var string
-     */
-    private $kimaiRootPath;
 
     /**
      * @var KimaiQuickbooksConfiguration
@@ -48,14 +43,13 @@ final class EasyBackupController extends AbstractController
      */
     private $logger;
 
-    public function __construct(string $dataDirectory, KimaiQuickbooksConfiguration $configuration, LoggerInterface $logger = null)
+    public function __construct(KimaiQuickbooksConfiguration $configuration)
     {
-        $this->kimaiRootPath = dirname(dirname($dataDirectory)) . DIRECTORY_SEPARATOR;
         $this->configuration = $configuration;
     }
 
     /**
-     * @Route(path="", name="easy_backup", methods={"GET", "POST"})
+     * @Route(path="", name="kimai_quickbooks", methods={"GET", "POST"})
      *
      * @return Response
      */
