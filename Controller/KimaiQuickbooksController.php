@@ -1,7 +1,8 @@
 <?php
 
 /*
- * This file is part of the EasyBackupBundle for Kimai 2.
+ * This file is part of the KimaiQuickbooksBundle for Kimai 2.
+ * All rights reserved by Matt Barclay (matt@cascadia-aero.com).
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -9,16 +10,11 @@
 
 namespace KimaiPlugin\KimaiQuickbooksBundle\Controller;
 
-use App\Constants;
 use App\Controller\AbstractController;
 use KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration;
-use PhpOffice\PhpWord\Shared\ZipArchive;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -54,7 +50,7 @@ final class EasyBackupController extends AbstractController
 
     public function __construct(string $dataDirectory, KimaiQuickbooksConfiguration $configuration, LoggerInterface $logger = null)
     {
-        $this->kimaiRootPath = dirname(dirname($dataDirectory)).DIRECTORY_SEPARATOR;
+        $this->kimaiRootPath = dirname(dirname($dataDirectory)) . DIRECTORY_SEPARATOR;
         $this->configuration = $configuration;
     }
 
