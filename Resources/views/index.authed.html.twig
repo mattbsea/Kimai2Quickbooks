@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}
+	{{ 'Quickbooks Integration'|trans }}
+{% endblock %}
+{% block page_subtitle %}
+	{{ 'kimai_quickbooks.subtitle'|trans }}
+{% endblock %}
+
+{% block main %}
+
+<h2>Connected to Quickbooks</h2>
+<br>
+<br>
+{{ companyInfo.CompanyName }}<br>
+{{ companyInfo.CompanyAddr.Line1 }}</br>
+{{ companyInfo.CompanyAddr.Line2 }}</br>
+{{ companyInfo.CompanyAddr.City }} {{ companyInfo.CompanyAddr.PostalCode }}</br>
+
+{% endblock %}

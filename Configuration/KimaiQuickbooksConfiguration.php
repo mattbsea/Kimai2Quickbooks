@@ -47,9 +47,9 @@ final class KimaiQuickbooksConfiguration implements SystemBundleConfiguration, \
         return (string) $this->find('setting_openid_redirect_uri');
     }
 
-    public function getAuthorizationRequestUrl(string $base_url): string
+    public function getAuthorizationRequestUrl(): string
     {
-        $dataService = $this->getQBDataService($base_url);
+        $dataService = $this->getQBDataService();
         $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
         $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
 
@@ -61,7 +61,7 @@ final class KimaiQuickbooksConfiguration implements SystemBundleConfiguration, \
         return (string) $this->find('setting_token_endpoint_url');
     }
 
-    public function getQBDataService(string $base_url): DataService
+    public function getQBDataService(): DataService
     {
         return DataService::Configure([
             'auth_mode' => 'oauth2',

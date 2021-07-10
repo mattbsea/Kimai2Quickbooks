@@ -56,11 +56,26 @@ final class KimaiQuickbooksController extends AbstractController
      */
     public function indexAction(Request $request): Response
     {
-        $authUrl = $this->configuration->getAuthorizationRequestUrl('https://' . $request->server->get('HTTP_HOST'));
+        $code = $request->query->get('code');
+        $realmId = $request->query->get('realmId');
+        if( isset($code) && isset($realmId)) {
+            $dataService = $this->configuration->getQBDataService();
+            $oauthHelper = $dataService->getOAuth2LoginHelper();
+            $accessToken = $oauthHelper->exchangeAuthorizationCodeForToken($code, $realmId);
+            $dataService->updateOAuth2Token($accessToken);
 
-        return $this->render('@KimaiQuickbooks/index.html.twig', [
-            'authUrl' => $authUrl
-        ]);
+            $companyInfo = $dataService->getCompanyInfo();
+
+            return $this->render('@KimaiQuickbooks/index.authed.html.twig', [
+                'companyInfo' => $companyInfo
+            ]);
+        } else {
+            $authUrl = $this->configuration->getAuthorizationRequestUrl();
+
+            return $this->render('@KimaiQuickbooks/index.html.twig', [
+                'authUrl' => $authUrl
+            ]);
+        }
     }
 
     /**
