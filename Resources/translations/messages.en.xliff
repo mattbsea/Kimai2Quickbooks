@@ -7,7 +7,7 @@
                 <target>Kimai Quickbooks</target>
             </trans-unit>
             <trans-unit id="kimai_quickbooks.subtitle">
-                <source>easy_backup.subtitle</source>
+                <source>kimai_quickbooks.subtitle</source>
                 <target>Integrate Kimai with Quickbooks Online</target>
             </trans-unit>
         </body>

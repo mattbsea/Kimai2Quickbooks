@@ -16,8 +16,8 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Nelmio\ApiDocBundle\Annotation\Security as ApiSecurity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Swagger\Annotations as SWG;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @RouteResource("Quickbooks")
@@ -46,7 +46,6 @@ final class APIController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-
     /**
      * Returns one demo entity
      *
@@ -62,7 +61,7 @@ final class APIController extends AbstractFOSRestController
      */
     public function oauth_redirectAction(Request $request): Response
     {
-        $view = $this->view($request->query->get("code"), 200);
+        $view = $this->view($request->query->get('code'), 200);
 
         return $this->handleView($view);
     }

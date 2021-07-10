@@ -10,7 +10,7 @@
 
 namespace KimaiPlugin\KimaiQuickbooksBundle\Configuration;
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Configuration\StringAccessibleConfigTrait;
 use App\Configuration\SystemBundleConfiguration;

@@ -12,3 +12,8 @@ services:
   KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration:
     arguments:
       $settings: "%kimai_quickbooks_settings%"
+
+  KimaiPlugin\KimaiQuickbooksBundle\Repository\QBCustomerRepository:
+    class: Doctrine\ORM\EntityRepository
+    factory: ["@doctrine.orm.entity_manager", getRepository]
+    arguments: ['KimaiPlugin\KimaiQuickbooksBundle\Entity\QBCustomer']

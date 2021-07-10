@@ -58,7 +58,7 @@ final class KimaiQuickbooksController extends AbstractController
     {
         $code = $request->query->get('code');
         $realmId = $request->query->get('realmId');
-        if( isset($code) && isset($realmId)) {
+        if (isset($code) && isset($realmId)) {
             $dataService = $this->configuration->getQBDataService();
             $oauthHelper = $dataService->getOAuth2LoginHelper();
             $accessToken = $oauthHelper->exchangeAuthorizationCodeForToken($code, $realmId);

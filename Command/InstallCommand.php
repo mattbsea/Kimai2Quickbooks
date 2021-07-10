@@ -18,4 +18,14 @@ class InstallCommand extends AbstractBundleInstallerCommand
     {
         return 'kimai-quickbooks';
     }
+
+    protected function hasAssets(): bool
+    {
+        return true;
+    }
+
+    protected function getMigrationConfigFilename(): ?string
+    {
+        return __DIR__ . '/../Migrations/kimai-quickbooks.yaml';
+    }
 }
