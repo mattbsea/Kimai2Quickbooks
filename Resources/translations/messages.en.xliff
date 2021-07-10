@@ -6,7 +6,7 @@
                 <source>Kimai Quickbooks</source>
                 <target>Kimai Quickbooks</target>
             </trans-unit>
-            <trans-unit id="easy_backup.subtitle">
+            <trans-unit id="kimai_quickbooks.subtitle">
                 <source>easy_backup.subtitle</source>
                 <target>Integrate Kimai with Quickbooks Online</target>
             </trans-unit>

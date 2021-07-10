@@ -14,6 +14,7 @@ use App\Controller\AbstractController;
 use KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -53,8 +54,24 @@ final class KimaiQuickbooksController extends AbstractController
      *
      * @return Response
      */
-    public function indexAction(): Response
+    public function indexAction(Request $request): Response
     {
+        $authUrl = $this->configuration->getAuthorizationRequestUrl('https://' . $request->server->get('HTTP_HOST'));
+
+        return $this->render('@KimaiQuickbooks/index.html.twig', [
+            'authUrl' => $authUrl
+        ]);
+    }
+
+    /**
+     * @Route(path="/oauth_redirect", name="oauth_redirect", methods={"GET", "POST"})
+     *
+     * @return Response
+     */
+    public function oauthAction(Request $request): Response
+    {
+        dump($request);
+
         return $this->render('@KimaiQuickbooks/index.html.twig', []);
     }
 }

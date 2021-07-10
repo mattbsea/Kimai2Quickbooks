@@ -28,7 +28,7 @@ services:
       - ADMINMAIL=mbarclay@pm.me
       - ADMINPASS=changeme
       - DATABASE_URL=mysql://kimaiuser:kimaipassword@sqldb/kimai
-      - TRUSTED_HOSTS=nginx,localhost,127.0.0.1
+      - TRUSTED_HOSTS=${TRUSTED_HOSTS:-nginx,localhost,127.0.0.1}
     volumes:
       - public:/opt/kimai/public
       - ./:/opt/kimai/var/plugins/KimaiQuickbooksBundle

@@ -15,6 +15,7 @@ use App\Form\Model\Configuration;
 use App\Form\Model\SystemConfiguration as SystemConfigurationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SystemConfigurationSubscriber implements EventSubscriberInterface
 {
@@ -50,20 +51,8 @@ class SystemConfigurationSubscriber implements EventSubscriberInterface
                     ->setRequired(false)
                     ->setType(TextType::class),
                 (new Configuration())
-                    ->setName('kimai_quickbooks.setting_openid_redirect_uri')
-                    ->setLabel('kimai_quickbooks.setting_openid_redirect_uri')
-                    ->setTranslationDomain('system-configuration')
-                    ->setRequired(false)
-                    ->setType(TextType::class),
-                (new Configuration())
-                    ->setName('kimai_quickbooks.setting_authorization_request_url')
-                    ->setLabel('kimai_quickbooks.setting_authorization_request_url')
-                    ->setTranslationDomain('system-configuration')
-                    ->setRequired(false)
-                    ->setType(TextType::class),
-                (new Configuration())
-                    ->setName('kimai_quickbooks.setting_token_endpoint_url')
-                    ->setLabel('kimai_quickbooks.setting_token_endpoint_url')
+                    ->setName('kimai_quickbooks.setting_backend')
+                    ->setLabel('kimai_quickbooks.setting_backend')
                     ->setTranslationDomain('system-configuration')
                     ->setRequired(false)
                     ->setType(TextType::class),

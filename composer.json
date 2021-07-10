@@ -31,6 +31,8 @@
     "codestyle-fix": "vendor/bin/php-cs-fixer fix"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.16"
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "friendsofsymfony/rest-bundle": "^3.0",
+    "symfony/var-dumper": "^5.3"
   }
 }
