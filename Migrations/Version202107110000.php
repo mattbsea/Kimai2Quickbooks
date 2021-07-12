@@ -32,6 +32,7 @@ final class Version202107110000 extends AbstractMigration
             $table->addColumn('id', Types::INTEGER, ['autoincrement' => true, 'notnull' => true]);
             $table->addColumn('company_id', Types::STRING, ['notnull' => true]);
             $table->addColumn('access_token', Types::TEXT, ['notnull' => true]);
+            $table->addColumn('refresh_token', Types::TEXT, ['notnull' => true]);
             $table->addColumn('company_name', Types::STRING, ['length' => 255, 'notnull' => true]);
 
             $table->setPrimaryKey(['id']);
