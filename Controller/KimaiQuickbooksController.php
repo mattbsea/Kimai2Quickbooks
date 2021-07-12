@@ -12,6 +12,8 @@ namespace KimaiPlugin\KimaiQuickbooksBundle\Controller;
 
 use App\Controller\AbstractController;
 use KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration;
+use KimaiPlugin\KimaiQuickbooksBundle\Repository\QBConnectionRepository;
+use KimaiPlugin\KimaiQuickbooksBundle\Entity\QBConnection;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class KimaiQuickbooksController extends AbstractController
 {
-    public const LOG_FILE_NAME = 'easybackup.log';
+    public const LOG_FILE_NAME = 'kimai_quickbooks.log';
     public const LOG_ERROR_PREFIX = 'ERROR';
     public const LOG_WARN_PREFIX = 'WARNING';
     public const LOG_INFO_PREFIX = 'INFO';
@@ -35,18 +37,19 @@ final class KimaiQuickbooksController extends AbstractController
     private $configuration;
 
     /**
-     * @var string
+     * @var QBConnectionRepository
      */
-    private $filesystem;
+    private $qbconn_repository;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(KimaiQuickbooksConfiguration $configuration)
+    public function __construct(QBConnectionRepository $qbconn_repository, KimaiQuickbooksConfiguration $configuration)
     {
         $this->configuration = $configuration;
+        $this->qbconn_repository = $qbconn_repository;
     }
 
     /**
@@ -66,6 +69,16 @@ final class KimaiQuickbooksController extends AbstractController
 
             $companyInfo = $dataService->getCompanyInfo();
 
+            if($this->qbconn_repository->hasCompany((string) $companyInfo->Id)) {
+
+            } else {
+                $qbconn = new QBConnection();
+                $qbconn->setCompanyId($companyInfo->Id);
+                $qbconn->setAccessToken($accessToken->getAccessToken());
+                $qbconn->setCompanyName($companyInfo->CompanyName);
+                $this->qbconn_repository->save($qbconn);
+            }
+
             return $this->render('@KimaiQuickbooks/index.authed.html.twig', [
                 'companyInfo' => $companyInfo
             ]);
@@ -76,17 +89,5 @@ final class KimaiQuickbooksController extends AbstractController
                 'authUrl' => $authUrl
             ]);
         }
-    }
-
-    /**
-     * @Route(path="/oauth_redirect", name="oauth_redirect", methods={"GET", "POST"})
-     *
-     * @return Response
-     */
-    public function oauthAction(Request $request): Response
-    {
-        dump($request);
-
-        return $this->render('@KimaiQuickbooks/index.html.twig', []);
     }
 }

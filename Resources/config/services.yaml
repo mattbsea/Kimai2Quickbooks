@@ -9,6 +9,10 @@ services:
     resource: "../../*"
     exclude: "../../{Resources,vendor}"
 
+  KimaiPlugin\KimaiQuickbooksBundle\Controller\:
+    resource: "../../Controller"
+    tags: ["controller.service_arguments"]
+
   KimaiPlugin\KimaiQuickbooksBundle\Configuration\KimaiQuickbooksConfiguration:
     arguments:
       $settings: "%kimai_quickbooks_settings%"
@@ -17,3 +21,8 @@ services:
     class: Doctrine\ORM\EntityRepository
     factory: ["@doctrine.orm.entity_manager", getRepository]
     arguments: ['KimaiPlugin\KimaiQuickbooksBundle\Entity\QBCustomer']
+
+  KimaiPlugin\KimaiQuickbooksBundle\Repository\QBConnectionRepository:
+    class: Doctrine\ORM\EntityRepository
+    factory: ["@doctrine.orm.entity_manager", getRepository]
+    arguments: ['KimaiPlugin\KimaiQuickbooksBundle\Entity\QBConnection']

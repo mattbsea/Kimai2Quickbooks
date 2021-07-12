@@ -9,15 +9,37 @@
 
 {% block main %}
 
-<h2>Stuff goes here</h2>
-<br>
-<br>
+<h3>Configuration</h3>
+<ol>
+  <li>Create an account at:  <a href="https://developer.intuit.com" target="_blank">https://developer.intuit.com</a></li>
+  <li>Follow the prompts to create an app:
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+      <li style="margin-left:2em">Select a scope:  "Accounting"</li>
+	</ol>
+  </li>
+  <li>Click on app, then on "Production"</li>
+  <li>Apply for production keys.  For license and privacy, provide your own or use:
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+      <li style="margin-left:2em">https://www.kimai.org/privacy-policy</li>
+	  <li style="margin-left:2em">https://github.com/mattbsea/Kimai2Quickbooks/blob/main/LICENSE</li>
+	</ol>
+  </li>
+  <li>Set redirect URI to the URL of this page</li>
+  <li>Go to System -> Settings and configure Quickbooks keys:
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+      <li style="margin-left:2em">Client ID</li>
+	  <li style="margin-left:2em">Client Secret</li>
+      <li style="margin-left:2em">Redirect URI (set to URL of this page)</li>
+	  <li style="margin-left:2em">API Backend:  production</li>
+	</ol>
+  </li>
+  <li>Be sure to reload this page after making those changes.</li>
+  <li>Click "Connect to Quickbooks"</li>
 
+</ol>
 
-{# <img src="{{ asset('bundles/KimaiQuickbooksBundle/Resources/public/C2QB_green_btn_lg_default.png') }}"> #}
-
-
-<button onclick="location.href = '{{ authUrl }}'">Connect to Quickbooks</button>
-
+<a href="{{ authUrl }}">
+<img width=200 src="{{ asset('bundles/kimaiquickbooks/C2QB_green_btn_lg_default.png') }}">
+</a>
 
 {% endblock %}

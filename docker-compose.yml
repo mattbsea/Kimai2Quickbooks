@@ -28,7 +28,7 @@ services:
       - ADMINMAIL=mbarclay@pm.me
       - ADMINPASS=changeme
       - DATABASE_URL=mysql://kimaiuser:kimaipassword@sqldb/kimai
-      - TRUSTED_HOSTS=${TRUSTED_HOSTS:-nginx,localhost,127.0.0.1}
+      - TRUSTED_HOSTS=nginx,localhost,127.0.0.1,ngrok.io
     volumes:
       - public:/opt/kimai/public
       - ./:/opt/kimai/var/plugins/KimaiQuickbooksBundle
@@ -46,6 +46,19 @@ services:
       maildomain: neontribe.co.uk
       smtp_user: kimai:kimai
     restart: unless-stopped
+
+  ngrok:
+    image: lugana707/ngrok
+    depends_on:
+      - nginx
+    links:
+      - nginx
+    ports:
+      - 4551:4551
+    environment:
+      - DOMAIN=nginx
+      - PORT=80
+      - AUTH_TOKEN=${AUTH_TOKEN}
 
 volumes:
   var:

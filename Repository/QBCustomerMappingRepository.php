@@ -10,10 +10,8 @@
 
 namespace KimaiPlugin\KimaiQuickbooksBundle\Repository;
 
-use App\Entity\Project;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\Query\Expr\Join;
 use KimaiPlugin\KimaiQuickbooksBundle\Entity\QBCustomerMapping;
 
 class QBCustomerMappingRepository extends EntityRepository
@@ -23,56 +21,32 @@ class QBCustomerMappingRepository extends EntityRepository
      */
     public function findAll()
     {
-        return $this->createQueryBuilder('spt')
-            ->join(Project::class, 'p', Join::WITH, 'spt.project = p')
-            ->orderBy('p.name, spt.shareKey', 'ASC')
+        return $this->createQueryBuilder('kqb')
             ->getQuery()
             ->execute();
     }
 
     /**
-     * @param QBCustomerMapping $sharedProject
+     * @param QBCustomerMapping $mapping
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(QBCustomerMapping $sharedProject)
+    public function save(QBCustomerMapping $mapping)
     {
         $em = $this->getEntityManager();
-        $em->persist($sharedProject);
+        $em->persist($mapping);
         $em->flush();
     }
 
     /**
-     * @param QBCustomerMapping $sharedProject
+     * @param QBCustomerMapping $mapping
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function remove(QBCustomerMapping $sharedProject)
+    public function remove(QBCustomerMapping $mapping)
     {
         $em = $this->getEntityManager();
-        $em->remove($sharedProject);
+        $em->remove($mapping);
         $em->flush();
-    }
-
-    /**
-     * @param Project|int|null $project
-     * @param string|null $shareKey
-     * @return QBCustomerMapping|null
-     */
-    public function findByProjectAndShareKey($project, ?string $shareKey)
-    {
-        try {
-            return $this->createQueryBuilder('spt')
-                ->where('spt.project = :project')
-                ->andWhere('spt.shareKey = :shareKey')
-                ->setMaxResults(1)
-                ->setParameter('project', $project)
-                ->setParameter('shareKey', $shareKey)
-                ->getQuery()
-                ->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
-            // We can ignore that as we have a unique database key for project and shareKey
-            return null;
-        }
     }
 }
